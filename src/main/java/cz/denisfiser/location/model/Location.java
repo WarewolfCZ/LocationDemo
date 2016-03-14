@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * Location info
@@ -25,10 +26,15 @@ public class Location {
     @Column(name = "longitude")
     private double lng;
 
+    public Location() {
+
+    }
+
     public Location(String vehicleId, double latitude, double longitude) {
         this.vehicleId = vehicleId;
         this.lat = latitude;
         this.lng = longitude;
+        this.time = (int) (Calendar.getInstance().getTimeInMillis() / 1000);
     }
 
     @JsonIgnore

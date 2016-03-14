@@ -9,9 +9,12 @@ import cz.denisfiser.location.model.LocationStoreResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Location storage
@@ -31,8 +34,9 @@ public class LocationStorage {
 
     /**
      * Store vehicle location to database
+     *
      * @param vehicleId vehicle identifier
-     * @param latitude latitude
+     * @param latitude  latitude
      * @param longitude longitude
      * @return LocationStoreResponse
      */
@@ -52,16 +56,28 @@ public class LocationStorage {
     }
 
     /**
-     *
-     * @param vehicleId vehicle identificator
-     * @param from timestamp from
-     * @param to timestamp to
-     * @param limit limit result count
+     * @param vehicleId vehicle identifier
+     * @param from      timestamp from
+     * @param to        timestamp to
+     * @param limit     limit result count
      * @return LocationLoadResponse
      */
-    public LocationLoadResponse loadLocations(String vehicleId, int from, int to, int limit) {
+    public LocationLoadResponse loadLocations(String vehicleId, Integer from, Integer to, Integer limit) {
         LocationLoadResponse result = new LocationLoadResponse();
-        locationRepository.findByVehicleId(vehicleId);
+        Pageable top = new PageRequest(0, limit);
+        List<Location> locations;
+
+        if (from == null && to == null) locations = locationRepository.findByVehicleId(vehicleId, top);
+        else if (to == null) locations = locationRepository.findByVehicleIdAndTimeGreaterThanEqual(vehicleId, from, top);
+        else if (from == null) locations = locationRepository.findByVehicleIdAndTimeLessThan(vehicleId, to, top);
+        else locations = locationRepository.findByVehicleIdAndTimeBetween(vehicleId, from, to, top);
+
+        result.setVehicleId(vehicleId);
+        if (locations != null) {
+            result.setLocations(locations);
+            result.setCount(locations.size());
+        }
+        result.setTimestamp((int) (Calendar.getInstance().getTimeInMillis() / 1000L));
         return result;
     }
 }
