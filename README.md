@@ -4,6 +4,8 @@
 
 This is a demo that serves no real purpose
 
+API documentation available at http://docs.locationdemo.apiary.io/#reference
+
 ## Installation
 
 - clone repository:
