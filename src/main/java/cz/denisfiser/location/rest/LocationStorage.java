@@ -56,6 +56,8 @@ public class LocationStorage {
     }
 
     /**
+     * Load location history from database
+     *
      * @param vehicleId vehicle identifier
      * @param from      timestamp from
      * @param to        timestamp to

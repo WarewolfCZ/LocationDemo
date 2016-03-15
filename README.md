@@ -31,7 +31,7 @@ server.port = 8081
 logging.level.root=INFO
 logging.level.org.springframework.web=INFO
 logging.level.org.hibernate=ERROR
-logging.level.cz.mediawork.mystay.proxy=INFO
+logging.level.cz.denisfiser.location=INFO
 logging.file=location-servicess.log
 ```
 example configuration for MySQL database (also a default configuration if no application.properties file present):
@@ -52,7 +52,7 @@ server.port = 8081
 logging.level.root=INFO
 logging.level.org.springframework.web=INFO
 logging.level.org.hibernate=ERROR
-logging.level.cz.mediawork.mystay.proxy=INFO
+logging.level.cz.denisfiser.location=INFO
 logging.file=location-service.log
 ```
 
