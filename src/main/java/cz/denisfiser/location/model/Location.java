@@ -10,8 +10,14 @@ import java.util.Calendar;
  * Location info
  * Created by Denis on 14. 3. 2016.
  */
+@SuppressWarnings("unused")
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Table(indexes = {
+        @Index(name = "IDX_VEHID1", columnList = "vehicle_id"),
+        @Index(name = "IDX_VEHID2", columnList = "vehicle_id,loc_time"),
+        @Index(name = "IDX_TIME1", columnList = "loc_time")
+})
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
