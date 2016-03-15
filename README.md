@@ -1,5 +1,9 @@
 # Location service demo
 
+## Description
+
+This is a demo that serves no real purpose
+
 ## Installation
 
 - clone repository:
@@ -28,7 +32,7 @@ logging.level.org.hibernate=ERROR
 logging.level.cz.mediawork.mystay.proxy=INFO
 logging.file=location-servicess.log
 ```
-example configuration for MySQL database (also a default configuration if not application.properties file present):
+example configuration for MySQL database (also a default configuration if no application.properties file present):
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost/location?characterEncoding=UTF-8&useSSL=false
