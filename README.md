@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a demo that serves no real purpose
+This is just a coding demo without actual function
 
 API documentation available at http://docs.locationdemo.apiary.io/#reference
 

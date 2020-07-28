@@ -66,7 +66,7 @@ public class LocationStorage {
      */
     public LocationLoadResponse loadLocations(String vehicleId, Integer from, Integer to, Integer limit) {
         LocationLoadResponse result = new LocationLoadResponse();
-        Pageable top = new PageRequest(0, limit);
+        Pageable top = PageRequest.of(0, limit);
         List<Location> locations;
 
         if (from == null && to == null) locations = locationRepository.findByVehicleId(vehicleId, top);
